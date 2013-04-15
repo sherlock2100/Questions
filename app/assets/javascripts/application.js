@@ -16,14 +16,17 @@
 //= require select2
 //= require_tree .
 var Questions = (function() {
-  function QuestionView(questionBody, author) {
+  function Question(question) {
     var that = this;
+
+    that.body = question.body;
+    that.author = question.author;
 
     that.render = function() {
       var source = $("#question-tpl").html();
       var template = Handlebars.compile(source);
 
-      return template({body: questionBody, author: author});
+      return template({body: that.body, author: that.author});
     };
   }
 
@@ -32,17 +35,46 @@ var Questions = (function() {
 
     that.questions = [];
 
-    that.renderAll = function() {
+    that.render = function() {
       for (var i=0; i<that.questions.length; i++) {
-        $(el).append(that.questions[i].render());
+        var question = that.questions[i].render();
+
+        $(el).append(question);
       }
     };
+
+    that.fetch = function() {
+      $.getJSON('/questions.json', function(data) {
+        for (var i=0; i<data.length; i++) {
+          that.addQuestion(data[i]);
+        }
+
+        that.render();
+      });
+    };
+
+    that.addQuestion = function(data) {
+      var question = new Question(data);
+
+      that.questions.push(question);
+    };
+
+    // that.installListeners = function() {
+    //   $(".new-question").click(function() {
+    //     $.post('/questions', $("#new-question").serialize()).done(function(data) {
+    //       that.addQuestion(data);
+    //       that.render();
+    //     });
+    //   });
+    // };
   }
 
   return {
-    QuestionView: QuestionView,
+    Question: Question,
     AllView: AllView
   };
 })();
+
+new Questions.AllView('.questions').fetch();
 
 $(document).foundation();

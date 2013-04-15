@@ -1,12 +1,11 @@
 <h2>Ask</h2>
-<%= form_for @question, remote: true do |f| %>
+<%= form_for @question, remote: true, id: "new-question" do |f| %>
   <%= f.text_area :body %>
-  <%= f.submit 'Ask' %>
+  <%= f.submit 'Ask', class: "new-question" %>
 <% end %>
 
 <h2>Questions</h2>
 <div class="questions">
-  <%= render @questions %>
 </div>
 
 <script id="question-tpl" type="text/x-handlebars-template">

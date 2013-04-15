@@ -3,6 +3,11 @@ class QuestionsController < ApplicationController
     @users = User.all
     @question = Question.new
     @questions = Question.todays_questions
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @questions }
+    end
   end
 
   def create
