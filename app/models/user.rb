@@ -4,4 +4,6 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :votes
   has_many :upvoted_questions, through: :votes
+
+  validates :email, :fname, :lname, presence: true
 end
