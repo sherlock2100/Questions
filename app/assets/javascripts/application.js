@@ -48,8 +48,6 @@ var Questions = (function() {
         for (var i=0; i<data.length; i++) {
           that.addQuestion(data[i]);
         }
-
-        that.render();
       });
     };
 
@@ -57,16 +55,20 @@ var Questions = (function() {
       var question = new Question(data);
 
       that.questions.push(question);
+      $(el).append(question.render());
     };
 
-    // that.installListeners = function() {
-    //   $(".new-question").click(function() {
-    //     $.post('/questions', $("#new-question").serialize()).done(function(data) {
-    //       that.addQuestion(data);
-    //       that.render();
-    //     });
-    //   });
-    // };
+    that.postListener = function() {
+      $("#new_question").bind('ajax:success', function() {
+        $(el).empty();
+        that.fetch();
+      });
+    };
+
+    that.initialize = (function() {
+      that.postListener();
+      that.fetch();
+    })();
   }
 
   return {
@@ -75,6 +77,6 @@ var Questions = (function() {
   };
 })();
 
-new Questions.AllView('.questions').fetch();
+new Questions.AllView('.questions');
 
 $(document).foundation();

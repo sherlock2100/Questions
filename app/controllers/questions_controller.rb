@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(params[:question])
 
     if @question.save
-      render json: @question
+      render json: @question.formatted_json
     else
       render nothing: true, status: :unprocessable_entity
     end
