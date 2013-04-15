@@ -25,5 +25,13 @@
   <%= yield %>
 
   <%= javascript_include_tag "application" %>
+  <script>
+    $(function() {
+      $('.login-dropdown select').select2({
+        placeholder: 'Login Here',
+        allowClear: true
+      });
+    })
+  </script>
 </body>
 </html>

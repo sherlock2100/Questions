@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
 
   def self.todays_questions
     Question.all
-    Question.where('created_at >')
+    # Question.where('created_at > ')
   end
 
   def vote_count
