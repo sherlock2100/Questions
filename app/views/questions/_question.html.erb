@@ -1,6 +1,11 @@
 <div class="question">
   <div class="vote-button">
-    UPVOTE
+    <a href="#">
+      <%= form_tag votes_path, remote: true do %>
+        <%= hidden_field_tag :question_id, question.id %>
+        <%= submit_tag 'Upvote' %>
+      <% end %>
+    </a>
   </div>
 
   <div class="vote-count">

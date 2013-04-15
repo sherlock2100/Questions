@@ -1,12 +1,18 @@
-<div class="nav">
-  <div class="logo">
-    Q&A
-  </div>
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1>
+        <a href="#">Q&A</a>
+      </h1>
+    </li>
+  </ul>
 
-  <div class="login">
-    <p>Current Student: </p>
-    <%= form_tag session_path do %>
-      <%= collection_select :session, :user_id, @users, :id, :name %>
-    <% end %>
-  </div>
-</div>
+  <ul class="right">
+    <li class="login">
+      <p>Current Student: </p>
+      <%= form_tag session_path do %>
+        <%= collection_select :session, :user_id, @users, :id, :name %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
