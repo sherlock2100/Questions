@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
 
   validates :body, :user_id, presence: true
 
-  def todays_questions
+  def self.todays_questions
     Question.all
   end
 
