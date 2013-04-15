@@ -6,8 +6,11 @@ class Question < ActiveRecord::Base
 
   validates :body, :user_id, presence: true
 
+  default_scope order('votes_count DESC')
+
   def self.todays_questions
     Question.all
+    Question.where('created_at >')
   end
 
   def vote_count

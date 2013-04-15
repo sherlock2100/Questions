@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     if @question.save
       render json: @question
     else
-      render :nothing, status: :unprocessable_entity
+      render nothing: true, status: :unprocessable_entity
     end
   end
 end

@@ -2,16 +2,17 @@
   <ul class="title-area">
     <li class="name">
       <h1>
-        <a href="#">Q&A</a>
+        <a href="/">Q&A</a>
       </h1>
     </li>
   </ul>
 
   <ul class="right">
     <li class="login">
-      <p>Current Student: </p>
-      <%= form_tag session_path do %>
+      Current Student:
+      <%= form_tag session_path, remote: true, class: 'login-dropdown' do %>
         <%= collection_select :session, :user_id, @users, :id, :name %>
+        <%= submit_tag 'Login' %>
       <% end %>
     </li>
   </ul>
