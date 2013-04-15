@@ -1,1 +1,9 @@
-Questions
+<h2>Ask</h2>
+<%= form_for @question, remote: true do |f| %>
+  <%= f.text_area :body %>
+<% end %>
+
+<h2>Questions</h2>
+<div class="questions">
+  <%= render @questions %>
+</div>

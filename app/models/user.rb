@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   validates :email, :fname, :lname, presence: true
 
+  def to_s
+    name
+  end
+
   def name
     "#{fname} #{lname}"
   end
