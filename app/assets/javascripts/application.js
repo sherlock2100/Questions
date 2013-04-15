@@ -15,5 +15,34 @@
 //= require foundation
 //= require select2
 //= require_tree .
+var Questions = (function() {
+  function QuestionView(questionBody, author) {
+    var that = this;
+
+    that.render = function() {
+      var source = $("#question-tpl").html();
+      var template = Handlebars.compile(source);
+
+      return template({body: questionBody, author: author});
+    };
+  }
+
+  function AllView(el) {
+    var that = this;
+
+    that.questions = [];
+
+    that.renderAll = function() {
+      for (var i=0; i<that.questions.length; i++) {
+        $(el).append(that.questions[i].render());
+      }
+    };
+  }
+
+  return {
+    QuestionView: QuestionView,
+    AllView: AllView
+  };
+})();
 
 $(document).foundation();

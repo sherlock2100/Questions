@@ -8,3 +8,10 @@
 <div class="questions">
   <%= render @questions %>
 </div>
+
+<script id="question-tpl" type="text/x-handlebars-template">
+  <div class="question">
+    <p>{{body}}</p>
+    <div class="author">{{author}}</div>
+  </div>
+</script>
