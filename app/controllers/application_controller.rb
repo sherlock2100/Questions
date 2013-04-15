@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :check_logged_in
+  # before_filter :check_logged_in
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def check_logged_in
     unless logged_in?
-      render json: { 'error': 'Must be logged in' }, status: :forbidden
+      render json: { errors: 'Must be logged in' }, status: :forbidden
     end
   end
 end

@@ -1,0 +1,12 @@
+<div class="nav">
+  <div class="logo">
+    Q&A
+  </div>
+
+  <div class="login">
+    <p>Current Student: </p>
+    <%= form_tag session_path do %>
+      <%= collection_select :session, :user_id, @users, :id, :name %>
+    <% end %>
+  </div>
+</div>

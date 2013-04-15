@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   has_many :upvoted_questions, through: :votes
 
   validates :email, :fname, :lname, presence: true
+
+  def name
+    "#{fname} #{lname}"
+  end
 end
