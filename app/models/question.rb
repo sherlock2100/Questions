@@ -6,6 +6,10 @@ class Question < ActiveRecord::Base
 
   validates :body, :user_id, presence: true
 
+  def todays_questions
+    Question.all
+  end
+
   def vote_count
     votes_count
   end
