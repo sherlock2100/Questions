@@ -9,8 +9,10 @@
 </div>
 
 <script id="question-tpl" type="text/x-handlebars-template">
-  <div class="question">
+  <div data-question-id="{{id}}" class="question">
     <p>{{body}}</p>
     <div class="author">{{author}}</div>
+    <div class="vote-count">{{votes}}</div>
+    <button type="button" class="vote">Awesome</button>
   </div>
 </script>

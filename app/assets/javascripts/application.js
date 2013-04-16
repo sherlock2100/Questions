@@ -21,12 +21,37 @@ var Questions = (function() {
 
     that.body = question.body;
     that.author = question.author;
+    that.votes = question.votes;
+    that.id = question.id;
 
     that.render = function() {
+      that.upVote();
+
       var source = $("#question-tpl").html();
       var template = Handlebars.compile(source);
+      var html = template({
+        body: that.body,
+        author: that.author,
+        votes: that.votes
+      });
 
-      return template({body: that.body, author: that.author});
+      return template({
+        body: that.body,
+        author: that.author,
+        votes: that.votes,
+        id: that.id
+      });
+    };
+
+    that.upVote = function() {
+      $(".vote").click(function() {
+        var q_id = $(this).attr("data-question-id");
+
+        $.post('./votes', {question_id: q_id}, function(data) {
+          that.votes = data.votes;
+          $(this).closest(".vote-count").html(that.votes);
+        });
+      });
     };
   }
 
@@ -34,14 +59,6 @@ var Questions = (function() {
     var that = this;
 
     that.questions = [];
-
-    that.render = function() {
-      for (var i=0; i<that.questions.length; i++) {
-        var question = that.questions[i].render();
-
-        $(el).append(question);
-      }
-    };
 
     that.fetch = function() {
       $.getJSON('/questions.json', function(data) {

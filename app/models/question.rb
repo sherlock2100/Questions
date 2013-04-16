@@ -18,6 +18,6 @@ class Question < ActiveRecord::Base
   end
 
   def formatted_json
-    { body: body, author: author.name }
+    { body: body, author: author.name, votes: votes.count, id: id }
   end
 end
