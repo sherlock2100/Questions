@@ -1,0 +1,17 @@
+body {
+  background: #dff;
+}
+
+.top-bar {
+  background: red;
+  border-bottom: 5px solid rgba(0,0,0,0.2);
+}
+
+.bigheader {
+  font-size: 6em;
+  line-height: 60px;
+}
+
+h1, h2, h3, h4, h5, h6, p, body, input[type="submit"] {
+  font-family: 'Inconsolata', Helvetica, Arial, sans-serif;
+}

@@ -1,18 +1,30 @@
-<h2>Ask</h2>
-<%= form_for @question, remote: true, id: "new_question" do |f| %>
-  <%= f.text_area :body %>
-  <%= f.submit 'Ask' %>
-<% end %>
+<div class="wrapper">
+  <h2 class="bigheader">Ask</h2>
+  <div class="container">
+    <div class="login">
+      Current Student:
+      <%= form_tag session_path, remote: true, class: 'login-dropdown' do %>
+        <%= collection_select :session, :user_id, @users, :id, :name %>
+        <%= submit_tag 'Login' %>
+      <% end %>
+    </div>
 
-<h2>Questions</h2>
-<div class="questions">
-</div>
+    <%= form_for @question, remote: true, id: "new_question" do |f| %>
+      <%= f.text_area :body %>
+      <%= f.submit 'Ask' %>
+    <% end %>
 
-<script id="question-tpl" type="text/x-handlebars-template">
-  <div data-question-id="{{id}}" class="question">
-    <p>{{body}}</p>
-    <div class="author">{{author}}</div>
-    <div class="vote-count">{{votes}}</div>
-    <button type="button" class="vote">Awesome</button>
+    <h2>Questions</h2>
+    <div class="questions">
+    </div>
+
+    <script id="question-tpl" type="text/x-handlebars-template">
+      <div data-question-id="{{id}}" class="question">
+        <p>{{body}}</p>
+        <div class="author">{{author}}</div>
+        <div class="vote-count">{{votes}}</div>
+        <button type="button" class="vote">Awesome</button>
+      </div>
+    </script>
   </div>
-</script>
+</div>

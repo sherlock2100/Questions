@@ -9,11 +9,7 @@
 
   <ul class="right">
     <li class="login">
-      Current Student:
-      <%= form_tag session_path, remote: true, class: 'login-dropdown' do %>
-        <%= collection_select :session, :user_id, @users, :id, :name %>
-        <%= submit_tag 'Login' %>
-      <% end %>
+
     </li>
   </ul>
 </nav>
